@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useHref } from '../../../context/ConceptContext'
 import { seasons } from '../../../data/company'
 import Icon from '../../../components/Icon'
+import StablePanels from '../../../components/StablePanels'
 
 const currentSeason = () => {
   const m = new Date().getMonth()
@@ -12,9 +13,8 @@ const currentSeason = () => {
 // A year-round home-care calendar; opens on the current season.
 export default function SeasonPlanner() {
   const href = useHref()
-  const now = currentSeason()
+  const [now] = useState(currentSeason)
   const [active, setActive] = useState(now)
-  const s = seasons.find(x => x.id === active)
 
   return (
     <div className="planner">
@@ -36,12 +36,24 @@ export default function SeasonPlanner() {
           </button>
         ))}
       </div>
-      <div className={`planner-card season-${s.id}`} role="tabpanel" id="season-panel" aria-labelledby={`season-${s.id}`}>
-        <span className="planner-kicker">{s.label} to-do</span>
-        <h3>{s.task}</h3>
-        <p>{s.detail}</p>
-        <Link to={href(s.slug)} className="text-link">Show me how <Icon name="arrow" size={16} /></Link>
-      </div>
+      <StablePanels
+        className={`planner-card season-${active}`}
+        role="tabpanel"
+        id="season-panel"
+        aria-labelledby={`season-${active}`}
+        activeKey={active}
+        panels={seasons.map(x => ({
+          key: x.id,
+          content: (
+            <>
+              <span className="planner-kicker">{x.label} to-do</span>
+              <h3>{x.task}</h3>
+              <p>{x.detail}</p>
+              <Link to={href(x.slug)} className="text-link">Show me how <Icon name="arrow" size={16} /></Link>
+            </>
+          ),
+        }))}
+      />
     </div>
   )
 }

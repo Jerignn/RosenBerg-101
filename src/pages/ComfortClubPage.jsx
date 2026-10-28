@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageShell from '../components/PageShell'
 import Icon from '../components/Icon'
+import StablePanels from '../components/StablePanels'
 import { useHref } from '../context/ConceptContext'
 import { comfortClub } from '../data/company'
 
@@ -45,7 +46,7 @@ export default function ComfortClubPage() {
             type="button"
             id={`tab-${t.id}`}
             aria-selected={tab === t.id}
-            aria-controls={`panel-${t.id}`}
+            aria-controls="club-panel"
             className={tab === t.id ? 'is-active' : ''}
             onClick={() => setTab(t.id)}
           >
@@ -53,11 +54,16 @@ export default function ComfortClubPage() {
           </button>
         ))}
       </div>
-      <div role="tabpanel" id={`panel-${active.id}`} aria-labelledby={`tab-${active.id}`}>
-        <ol className="numbered-list cols-2">
-          {active.items.map(i => <li key={i}>{i}</li>)}
-        </ol>
-      </div>
+      <StablePanels
+        role="tabpanel"
+        id="club-panel"
+        aria-labelledby={`tab-${active.id}`}
+        activeKey={active.id}
+        panels={tabs.map(t => ({
+          key: t.id,
+          content: <ol className="numbered-list cols-2">{t.items.map(i => <li key={i}>{i}</li>)}</ol>,
+        }))}
+      />
     </PageShell>
   )
 }

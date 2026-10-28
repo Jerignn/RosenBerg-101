@@ -121,6 +121,7 @@
 .console-readout dd { margin: 0; font-size: 1.5rem; font-weight: 600; }
 .console-tip { margin-top: 14px; padding: 16px 18px; border-radius: 8px; border: 1px solid var(--line); border-left: 3px solid var(--tone); background: rgba(255,255,255,.025); display: grid; gap: 6px; }
 .console-tip p { color: var(--muted); font-size: .93rem; }
+.console-tip .stable-panel { display: grid; gap: 6px; align-content: start; }
 .console-tip.tone-warn { border-left-color: var(--ember); }
 .console-link { display: inline-flex; align-items: center; gap: 6px; color: var(--tone); font-weight: 600; text-decoration: none; margin-top: 4px; }
 .console-hint { margin-top: 12px; text-align: center; font-size: .68rem; color: var(--muted); }
@@ -157,7 +158,7 @@
 .zones-icon { color: var(--accent); }
 .zones-panel h3 { font-size: 2rem; }
 .zones-panel > p { color: var(--muted); max-width: 52ch; }
-.zones-links { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; }
+.zones-links { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; margin: 10px 0; }
 .zones-links a { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border: 1px solid var(--line); border-radius: 4px; text-decoration: none; background: #0e1518; }
 .zones-links a:hover { border-color: var(--accent); color: var(--accent-text); }
 .zones-panel .btn { justify-self: start; }
@@ -167,7 +168,8 @@
   .zones-list button { border-right: 1px solid var(--line); padding: 12px; }
   .zones-list button svg { display: none; }
   .zones-panel { padding: 24px 18px; }
-  .zones-links { grid-template-columns: 1fr; }
+  .zones-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .zones-links a { padding: 10px 12px; font-size: .88rem; }
 }
 
 /* Coupons as ticket stubs */
@@ -199,9 +201,8 @@
 .ticker { margin-top: 20px; padding: 40px; border-radius: 10px; border: 1px solid var(--line-strong); background: var(--surface); }
 .ticker-count { font-size: .72rem; color: var(--muted); }
 .ticker blockquote { margin: 18px 0 28px; font-size: clamp(1.25rem, 2.6vw, 1.9rem); line-height: 1.35; font-weight: 500; }
-.ticker-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.ticker-foot .mono { color: var(--muted); font-size: .8rem; }
-.ticker-ctrl { display: flex; gap: 8px; }
+.ticker .stable-panel .mono { color: var(--muted); font-size: .8rem; }
+.ticker-ctrl { display: flex; gap: 8px; margin-top: 24px; }
 @media (max-width: 640px) { .ticker { padding: 24px; } }
 
 /* Coverage chips */

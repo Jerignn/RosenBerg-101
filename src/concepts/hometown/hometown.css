@@ -120,7 +120,8 @@
 .finder-answer.has-answer .btn-primary { background: var(--sun); color: #2b201a; }
 .finder-answer h3 { font-size: 1.7rem; }
 .finder-kicker { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--sun); }
-.finder-empty { display: grid; justify-items: center; gap: 10px; text-align: center; color: var(--muted); }
+.finder-answer .stable-panel { display: grid; gap: 10px; align-content: center; }
+.finder-answer .finder-empty { justify-items: center; text-align: center; color: var(--muted); }
 @media (max-width: 860px) { .finder { grid-template-columns: 1fr; } .finder-ask, .finder-answer { padding: 24px; } }
 
 /* Services bento */
@@ -158,7 +159,8 @@
 .season-summer.is-on, .planner-card.season-summer { background: #f8e6bb; }
 .season-fall.is-on, .planner-card.season-fall { background: #fbe0cf; }
 .season-winter.is-on, .planner-card.season-winter { background: #dcecee; }
-.planner-card { border-radius: 28px; padding: 36px; display: grid; gap: 12px; align-content: center; }
+.planner-card { border-radius: 28px; padding: 36px; align-content: center; transition: background .3s; }
+.planner-card .stable-panel { display: grid; gap: 12px; align-content: center; }
 .planner-card h3 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
 .planner-card p { font-size: 1.08rem; max-width: 40ch; }
 .planner-kicker { font-weight: 800; font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--green); }
