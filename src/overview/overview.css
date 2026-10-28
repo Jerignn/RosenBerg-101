@@ -1,0 +1,42 @@
+.ov { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; background: #151515; color: #f4f4f5; font-family: 'Figtree', system-ui, sans-serif; }
+.ov-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 24px; }
+.ov-top img { width: 140px; background: #fff; padding: 6px 10px; border-radius: 10px; }
+.ov-top p { font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
+
+.ov-split { display: flex; min-height: 0; }
+.ov-half { flex: 1; display: grid; grid-template-rows: 1fr auto; gap: 24px; padding: 40px clamp(20px, 4vw, 56px); text-decoration: none; overflow: hidden; transition: flex .5s cubic-bezier(.2, .8, .2, 1); min-height: 560px; }
+.ov-split:hover .ov-half { flex: .8; }
+.ov-split .ov-half:hover, .ov-split .ov-half:focus-visible { flex: 1.25; }
+.ov-a { background: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px) 0 0 / 20px 20px, #0c1113; color: #e9eff1; font-family: 'Space Grotesk', sans-serif; }
+.ov-b { background: radial-gradient(circle at 80% 10%, rgba(242,184,75,.5), transparent 45%), #fbf5ec; color: #2b201a; }
+.ov-art { display: grid; place-items: center; }
+.ov-dial { width: min(260px, 60%); filter: drop-shadow(0 0 30px rgba(94,224,255,.35)); transition: transform .5s; }
+.ov-a:hover .ov-dial { transform: rotate(-8deg) scale(1.05); }
+.ov-arch { width: min(240px, 55%); aspect-ratio: 4 / 4.8; border-radius: 200px 200px 22px 22px; overflow: hidden; border: 6px solid #fff; background: #f2b84b; box-shadow: 0 30px 50px -25px rgba(80,45,20,.5); transition: transform .5s; }
+.ov-arch img { width: 100%; height: 100%; object-fit: cover; }
+.ov-b:hover .ov-arch { transform: rotate(3deg) translateY(-6px); }
+.ov-copy { display: grid; gap: 10px; max-width: 480px; }
+.ov-num { font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; opacity: .7; }
+.ov-copy h2 { font-size: clamp(2.2rem, 4.6vw, 3.6rem); line-height: 1; letter-spacing: -.02em; margin: 0; }
+.ov-b h2 { font-family: 'Bricolage Grotesque', sans-serif; }
+.ov-tags { font-weight: 600; }
+.ov-a .ov-tags { color: #7fe7ff; }
+.ov-b .ov-tags { color: #a63f20; }
+.ov-text { opacity: .82; line-height: 1.55; }
+.ov-palette { display: flex; gap: 6px; }
+.ov-palette span { width: 26px; height: 26px; border-radius: 50%; border: 2px solid rgba(128,128,128,.4); }
+.ov-go { margin-top: 8px; font-weight: 700; display: inline-block; padding: 12px 20px; width: fit-content; }
+.ov-a .ov-go { background: #5ee0ff; color: #03161c; border-radius: 4px; }
+.ov-b .ov-go { background: #c24e2c; color: #fff; border-radius: 99px; }
+
+.ov-notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 24px; font-size: .9rem; line-height: 1.5; color: #c9c9cf; }
+.ov-notes strong { color: #fff; }
+
+@media (max-width: 860px) {
+  .ov-split { flex-direction: column; }
+  .ov-half, .ov-split:hover .ov-half, .ov-split .ov-half:hover { flex: none; min-height: 0; }
+  .ov-art { padding: 8px 0; }
+  .ov-notes { grid-template-columns: 1fr; padding: 24px 16px; }
+  .ov-top { padding: 14px 16px; }
+  .ov-top p { font-size: .7rem; }
+}

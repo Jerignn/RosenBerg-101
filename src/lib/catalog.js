@@ -38,15 +38,6 @@ export const cities = [
 ]
 const citySlugs = new Set(cities.map(c => c.slug))
 
-// Pages with a hand-built React page instead of the generic content template.
-export const customSlugs = new Set([
-  'contact-us', 'request-service', 'request-estimate', 'commercial-request', 'cac', 'coupons',
-  'comfort-club-membership', 'financing', 'pay-your-bill-online', 'payment-subscription',
-  'inspectionschedule', 'join-team', 'refer-friend', 'customer-survey', 'reviewus', 'reviews',
-  'frequently-asked-questions', 'service-area', 'blog', 'photo-gallery', 'video-library',
-  'completed-projects', 'our-team', 'american-standard-products', 'sitemap',
-])
-
 export function cityInSlug(slug) {
   if (slug === 'san-antonio') return cities.find(c => c.slug === 'san-antonio')
   return cities.find(c =>

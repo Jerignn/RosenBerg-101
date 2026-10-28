@@ -36,7 +36,7 @@ export default function RequestPage({ variant = 'service' }) {
       )}
       <div className="form-card">
         <SmartForm
-          key={variant}
+          key={`${variant}-${offer?.id ?? ''}`}
           fields={v.fields}
           submitLabel={v.submit}
           defaults={offer ? { message: `Claiming offer: ${offer.amount} ${offer.title}` } : {}}
