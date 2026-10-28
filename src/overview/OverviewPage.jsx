@@ -43,7 +43,7 @@ export default function OverviewPage() {
     <div className="ov">
       <header className="ov-top">
         <img src="/images/logo.webp" alt={site.name} width="150" height="47" />
-        <p>Website redesign · two concepts</p>
+        <h1>Website redesign · two concepts</h1>
       </header>
 
       <main className="ov-split">
@@ -60,7 +60,7 @@ export default function OverviewPage() {
               <div className="ov-palette">
                 {c.palette.map(p => <span key={p} style={{ background: p }} title={p} />)}
               </div>
-              <span className="ov-go">Open concept {c.number} →</span>
+              <span className="ov-go">Open concept {c.number} <span className="ov-arrow" aria-hidden="true">→</span></span>
             </div>
           </Link>
         ))}

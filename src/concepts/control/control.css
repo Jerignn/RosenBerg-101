@@ -244,3 +244,24 @@
 /* Mobile drawer styling for this concept */
 .concept-control .mobile-nav { background: #0c1113; }
 .concept-control .mobile-nav-top { font-family: var(--font-display); }
+
+/* Button motion — "instrument panel": a scan-line sweeps across, the glow powers up, presses click down like a hardware key. */
+.concept-control .btn { position: relative; overflow: hidden; isolation: isolate; transition: transform .18s cubic-bezier(.2, .8, .2, 1), box-shadow .25s, background .2s, border-color .2s, color .2s; }
+.concept-control .btn::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.45) 50%, transparent 65%); transform: translateX(-120%); pointer-events: none; }
+.concept-control .btn:hover::after, .concept-control .btn:focus-visible::after { animation: c-scan .7s ease-out; }
+@keyframes c-scan { to { transform: translateX(120%); } }
+.concept-control .btn-primary:hover { box-shadow: 0 0 0 1px rgba(94,224,255,.6), 0 0 22px rgba(94,224,255,.45), 0 10px 32px -8px rgba(94,224,255,.8); }
+.concept-control .btn-ghost::after { background: linear-gradient(105deg, transparent 35%, rgba(94,224,255,.25) 50%, transparent 65%); }
+.concept-control .btn-ghost:hover { border-color: var(--accent); color: var(--accent-text); box-shadow: 0 0 0 1px rgba(94,224,255,.25), 0 0 18px -4px rgba(94,224,255,.5); }
+.concept-control .btn:active:not(:disabled) { transform: translateY(1px) scale(.97); transition-duration: .06s; }
+.concept-control .btn svg { transition: transform .25s; }
+.concept-control .btn:hover svg { animation: c-blink .6s steps(2) 1; }
+@keyframes c-blink { 50% { opacity: .35; } }
+.concept-control .icon-btn, .concept-control .seg button, .concept-control .zones-list button, .concept-control .tabs button { transition: background .2s, box-shadow .25s, color .2s, border-color .2s, transform .12s; }
+.concept-control .icon-btn:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 14px -4px rgba(94,224,255,.6); }
+.concept-control .icon-btn:active, .concept-control .seg button:active, .concept-control .tabs button:active { transform: scale(.94); }
+.concept-control .seg button:not(.is-on):hover { color: var(--ink); background: rgba(255,255,255,.05); }
+.concept-control .seg button.is-on { box-shadow: 0 0 14px -2px var(--tone); }
+.concept-control .zones-list button:not(.is-on):hover { background: rgba(94,224,255,.05); box-shadow: inset 3px 0 0 rgba(94,224,255,.4); }
+.concept-control .zones-list button svg { transition: transform .25s, color .2s; }
+.concept-control .zones-list button:hover svg { transform: translateX(3px); color: var(--accent); }

@@ -8,11 +8,14 @@ export default function useNavState() {
   const [drawer, setDrawer] = useState(false)
   const ref = useRef(null)
   const { pathname } = useLocation()
+  const [lastPath, setLastPath] = useState(pathname)
 
-  useEffect(() => {
+  // Close everything when the route changes (reset-on-prop-change, done during render).
+  if (pathname !== lastPath) {
+    setLastPath(pathname)
     setOpenMenu(null)
     setDrawer(false)
-  }, [pathname])
+  }
 
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape') { setOpenMenu(null); setDrawer(false) } }

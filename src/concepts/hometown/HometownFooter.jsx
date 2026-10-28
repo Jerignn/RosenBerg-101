@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useHref } from '../../context/ConceptContext'
 import { serviceGroups } from '../../data/services'
 import { aboutLinks, legalLinks, resourceLinks, savingsLinks } from '../../data/company'
-import { site, badges } from '../../data/site'
+import { site, badges, copyrightYear } from '../../data/site'
 
 export default function HometownFooter() {
   const href = useHref()
@@ -38,7 +38,7 @@ export default function HometownFooter() {
         ))}
       </div>
       <div className="h-footer-legal">
-        <p>© {new Date().getFullYear()} {site.name}. {site.licenses.join(' · ')}.</p>
+        <p>© {copyrightYear} {site.name}. {site.licenses.join(' · ')}.</p>
         <p>{site.regulator}</p>
         <nav aria-label="Legal">{legalLinks.map(l => <Link key={l.slug} to={href(l.slug)}>{l.label}</Link>)}</nav>
       </div>

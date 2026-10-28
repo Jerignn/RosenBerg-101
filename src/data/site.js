@@ -27,7 +27,8 @@ export const site = {
   ],
 }
 
-export const yearsInBusiness = new Date().getFullYear() - site.founded
+export const copyrightYear = new Date().getFullYear()
+export const yearsInBusiness = copyrightYear - site.founded
 
 export const badges = [
   { src: '/images/acca.webp', alt: 'ACCA Residential Contractor of the Year 2021' },

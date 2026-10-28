@@ -28,10 +28,10 @@ function MegaPanel({ menu, href }) {
 
 export default function ControlHeader() {
   const href = useHref()
-  const nav = useNavState()
+  const { ref: headerRef, ...nav } = useNavState()
 
   return (
-    <header className="c-header" ref={nav.ref}>
+    <header className="c-header" ref={headerRef}>
       <div className="c-strip">
         <span className="mono"><span className="live-dot" aria-hidden="true" /> {site.award}</span>
         <div className="c-strip-links">

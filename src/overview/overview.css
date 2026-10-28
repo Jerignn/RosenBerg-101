@@ -1,14 +1,17 @@
 .ov { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; background: #151515; color: #f4f4f5; font-family: 'Figtree', system-ui, sans-serif; }
 .ov-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 24px; }
 .ov-top img { width: 140px; background: #fff; padding: 6px 10px; border-radius: 10px; }
-.ov-top p { font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
+.ov-top h1 { margin: 0; font-weight: 500; line-height: 1.4; }
+.ov-top p, .ov-top h1 { font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
 
-.ov-split { display: flex; min-height: 0; }
-.ov-half { flex: 1; display: grid; grid-template-rows: 1fr auto; gap: 24px; padding: 40px clamp(20px, 4vw, 56px); text-decoration: none; overflow: hidden; transition: flex .5s cubic-bezier(.2, .8, .2, 1); min-height: 560px; }
-.ov-split:hover .ov-half { flex: .8; }
-.ov-split .ov-half:hover, .ov-split .ov-half:focus-visible { flex: 1.25; }
-.ov-a { background: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px) 0 0 / 20px 20px, #0c1113; color: #e9eff1; font-family: 'Space Grotesk', sans-serif; }
-.ov-b { background: radial-gradient(circle at 80% 10%, rgba(242,184,75,.5), transparent 45%), #fbf5ec; color: #2b201a; }
+.ov-split { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding: 8px 24px 16px; min-height: 0; }
+.ov-half { position: relative; display: grid; grid-template-rows: 1fr auto; gap: 24px; padding: 40px clamp(20px, 4vw, 56px); text-decoration: none; overflow: hidden; min-height: 560px; border-radius: 24px; border: 1px solid rgba(255,255,255,.1); box-shadow: 0 24px 48px -28px rgba(0,0,0,.8); transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+.ov-half:hover, .ov-half:focus-visible { transform: translateY(-4px); box-shadow: 0 32px 60px -28px rgba(0,0,0,.9); }
+.ov-half:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+.ov-a { background: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px) 0 0 / 20px 20px, #0c1113; color: #e9eff1; font-family: 'Space Grotesk', sans-serif; border-color: rgba(94,224,255,.22); }
+.ov-a:hover { border-color: rgba(94,224,255,.6); }
+.ov-b { background: radial-gradient(circle at 80% 10%, rgba(242,184,75,.5), transparent 45%), #fbf5ec; color: #2b201a; border-color: rgba(194,78,44,.25); }
+.ov-b:hover { border-color: rgba(194,78,44,.7); }
 .ov-art { display: grid; place-items: center; }
 .ov-dial { width: min(260px, 60%); filter: drop-shadow(0 0 30px rgba(94,224,255,.35)); transition: transform .5s; }
 .ov-a:hover .ov-dial { transform: rotate(-8deg) scale(1.05); }
@@ -33,10 +36,25 @@
 .ov-notes strong { color: #fff; }
 
 @media (max-width: 860px) {
-  .ov-split { flex-direction: column; }
-  .ov-half, .ov-split:hover .ov-half, .ov-split .ov-half:hover { flex: none; min-height: 0; }
+  .ov-split { grid-template-columns: 1fr; gap: 20px; padding: 4px 16px 12px; }
+  .ov-half { min-height: 0; border-radius: 20px; }
   .ov-art { padding: 8px 0; }
   .ov-notes { grid-template-columns: 1fr; padding: 24px 16px; }
   .ov-top { padding: 14px 16px; }
-  .ov-top p { font-size: .7rem; }
+  .ov-top p, .ov-top h1 { font-size: .7rem; }
 }
+
+/* Each concept's button previews its own motion: A scans and glows, B springs up and its arrow hops. */
+.ov-go { position: relative; overflow: hidden; isolation: isolate; }
+.ov-go .ov-arrow { display: inline-block; transition: transform .3s; }
+.ov-a .ov-go { transition: box-shadow .25s, transform .18s; }
+.ov-a .ov-go::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.55) 50%, transparent 65%); transform: translateX(-120%); }
+.ov-a:hover .ov-go { box-shadow: 0 0 0 1px rgba(94,224,255,.6), 0 0 24px rgba(94,224,255,.5); }
+.ov-a:hover .ov-go::after { animation: ov-scan .7s ease-out; }
+.ov-a:hover .ov-arrow { transform: translateX(4px); }
+@keyframes ov-scan { to { transform: translateX(120%); } }
+.ov-b .ov-go { transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), box-shadow .3s; }
+.ov-b:hover .ov-go { transform: translateY(-3px); box-shadow: 0 12px 22px -10px rgba(194,78,44,.7); }
+.ov-b:hover .ov-arrow { animation: ov-hop .6s cubic-bezier(.34, 1.56, .64, 1); transform: translateX(4px); }
+@keyframes ov-hop { 40% { transform: translate(6px, -4px); } }
+.ov-half:active .ov-go { transform: scale(.96); }

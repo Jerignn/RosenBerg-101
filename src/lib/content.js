@@ -20,22 +20,27 @@ function load(path) {
 }
 
 function useJson(path) {
-  const [state, setState] = useState({ data: null, error: null, loading: Boolean(path) })
+  // Results are tagged with their path, so a stale result never shows for a new path.
+  const [state, setState] = useState({ path: null, data: null, error: null })
 
   useEffect(() => {
     if (!path) return
     let alive = true
-    setState({ data: null, error: null, loading: true })
     load(path)
-      .then(data => alive && setState({ data, error: null, loading: false }))
+      .then(data => alive && setState({ path, data, error: null }))
       .catch(error => {
         cache.delete(path)
-        if (alive) setState({ data: null, error, loading: false })
+        if (alive) setState({ path, data: null, error })
       })
     return () => { alive = false }
   }, [path])
 
-  return state
+  const current = state.path === path
+  return {
+    data: current ? state.data : null,
+    error: current ? state.error : null,
+    loading: Boolean(path) && !current,
+  }
 }
 
 export const usePage = slug => useJson(slug ? `/content/${slug}.json` : null)

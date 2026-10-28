@@ -31,10 +31,10 @@ function Dropdown({ menu, href }) {
 
 export default function HometownHeader() {
   const href = useHref()
-  const nav = useNavState()
+  const { ref: headerRef, ...nav } = useNavState()
 
   return (
-    <header className="h-header" ref={nav.ref}>
+    <header className="h-header" ref={headerRef}>
       <div className="h-ribbon">
         <span>☀ Serving {site.region} since {site.founded}</span>
         <Link to={href('coupons')}>$99 heating tune-up this fall →</Link>
